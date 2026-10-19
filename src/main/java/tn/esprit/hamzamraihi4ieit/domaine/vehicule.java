@@ -1,5 +1,6 @@
 package tn.esprit.hamzamraihi4ieit.domaine;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,14 +21,16 @@ import java.util.Set;
 public class vehicule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idVehicule;
+    private Long idVehicule;
     private String immatriculation;
     private String marque;
     private String modele;
     @Enumerated(value = EnumType.STRING)
-    private categorieVehicule catagorie;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_CASE_INSENSITIVE_PROPERTIES)
+    private categorieVehicule categorie;
     private BigDecimal tarifJournalier;
     @Enumerated(value = EnumType.STRING)
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_CASE_INSENSITIVE_PROPERTIES)
     private StatutVehicule statut;
 
     @ManyToOne(fetch = FetchType.LAZY)
