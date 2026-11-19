@@ -10,4 +10,9 @@ public interface IVehiculeServices {
     vehicule update(vehicule vehicule);
     void deleteById(Long id);
     List<vehicule> findAll();
+    vehicule assignToAgence(long idVehicule, long idagence);
+    vehicule assignTo(long idVehicule, long iddoc);
+    vehicule assignToEquipement(long idVehicule, long idEquipement);
+    vehicule unassignToAgence(long idVehicule, long idagence);
+    vehicule unassignToEquipement(long idVehicule, long idEquipement);
 }

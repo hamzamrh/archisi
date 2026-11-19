@@ -16,6 +16,7 @@ import java.util.List;
 public class VehiculeRestController {
 
     private final IVehiculeServices vehiculeServices;
+    private final IVehiculeServices iVehiculeServices;
 
     @Operation(summary = "Ajouter un vehicule")
     @PostMapping("add")
@@ -31,7 +32,7 @@ public class VehiculeRestController {
 
     @Operation(summary = "Afficher un vehicule par son id")
     @GetMapping("get/{id}")
-    public vehicule getById(@PathVariable("id") long id) {
+    public vehicule getById(@PathVariable long id) {
         return vehiculeServices.getById(id);
     }
 
@@ -43,7 +44,26 @@ public class VehiculeRestController {
 
     @Operation(summary = "Supprimer un vehicule par son id")
     @DeleteMapping("delete/{id}")
-    public void delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable Long id) {
         vehiculeServices.deleteById(id);
+    }
+
+    @PutMapping("/{idVehicule}/{idAgence}")
+    vehicule assignToAgence(@PathVariable long idVehicule, @PathVariable long idAgence) {
+        return iVehiculeServices.assignToAgence(idVehicule, idAgence);
+    }
+
+    @PutMapping("/assignToEquipement/{idVehicule}/{idEquipement}")
+    vehicule assignToEquipement(@PathVariable long idVehicule, @PathVariable long idEquipement) {
+        return iVehiculeServices.assignToEquipement(idVehicule, idEquipement);
+    }
+    @PutMapping("/unassignToAgence/{idVehicule}/{idAgence}")
+    vehicule unassignToAgence(@PathVariable long idVehicule, @PathVariable long idAgence) {
+        return iVehiculeServices.unassignToAgence(idVehicule, idAgence);
+    }
+
+    @PutMapping("/unassignToEquipement/{idVehicule}/{idEquipement}")
+    vehicule unassignToEquipement(@PathVariable long idVehicule, @PathVariable long idEquipement) {
+        return iVehiculeServices.unassignToEquipement(idVehicule, idEquipement);
     }
 }
