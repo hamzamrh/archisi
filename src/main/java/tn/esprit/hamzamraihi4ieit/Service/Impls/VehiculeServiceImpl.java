@@ -73,12 +73,6 @@ public class VehiculeServiceImpl implements IVehiculeServices {
     public vehicule unassignToAgence(long idVehicule, long idagence) {
         vehicule vehicule = iVehiculeRepository.findById(idVehicule).orElseThrow(() -> new EntityNotFoundException("vehicule not found"));
         Agence agence = iAgenceRepository.findById(idagence).orElseThrow(() -> new EntityNotFoundException("agence not found"));
-        if (vehicule.getAgence() == null) {
-            throw new IllegalStateException("vehicule n'est affecte a aucune agence");
-        }
-        if (vehicule.getAgence().getIdAgence() != agence.getIdAgence()) {
-            throw new IllegalStateException("vehicule n'est pas affecte a cette agence");
-        }
         vehicule.setAgence(null);
         return iVehiculeRepository.save(vehicule);
     }
@@ -88,6 +82,15 @@ public class VehiculeServiceImpl implements IVehiculeServices {
         vehicule vehicule = iVehiculeRepository.findById(idVehicule).orElseThrow(() -> new EntityNotFoundException("vehicule not found"));
         Equipements equipement = iEquipementsRepository.findById(idEquipement).orElseThrow(() -> new EntityNotFoundException("Équipement not found"));
         vehicule.getEquipements().remove(equipement);
+        return iVehiculeRepository.save(vehicule);
+    }
+
+    @Override
+    public vehicule addVehiculeAndAssignToAgence(vehicule vehicule, long idagence) {
+        Agence agence = iAgenceRepository.findById(idagence).orElseThrow(() -> new EntityNotFoundException("agence not found"));
+        //affectation agence a vehicule
+        vehicule.setAgence(agence);
+        //save : ajoute le vehicule + ses equipements grace au cascade PERSIST
         return iVehiculeRepository.save(vehicule);
     }
 

@@ -66,4 +66,9 @@ public class VehiculeRestController {
     vehicule unassignToEquipement(@PathVariable long idVehicule, @PathVariable long idEquipement) {
         return iVehiculeServices.unassignToEquipement(idVehicule, idEquipement);
     }
+
+    @PostMapping("/addVehiculeAndAssignToAgence/{idAgence}")
+    vehicule addVehiculeAndAssignToAgence(@RequestBody vehicule vehicule, @PathVariable long idAgence) {
+        return iVehiculeServices.addVehiculeAndAssignToAgence(vehicule, idAgence);
+    }
 }

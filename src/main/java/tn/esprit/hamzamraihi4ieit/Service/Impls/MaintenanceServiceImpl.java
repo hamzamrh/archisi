@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.hamzamraihi4ieit.Repository.IMaintenanceRepository;
 import tn.esprit.hamzamraihi4ieit.Service.IMaintenanceServices;
+import tn.esprit.hamzamraihi4ieit.WebController.dto.MaintenanceDTO;
+import tn.esprit.hamzamraihi4ieit.WebController.dto.MaintenanceMapper;
 import tn.esprit.hamzamraihi4ieit.domaine.Maintenance;
 
 import java.util.List;
@@ -14,10 +16,12 @@ import java.util.List;
 public class MaintenanceServiceImpl implements IMaintenanceServices {
 
     private final IMaintenanceRepository iMaintenanceRepository;
+    private final MaintenanceMapper maintenanceMapper;
 
     @Override
-    public Maintenance getById(int id) {
-        return iMaintenanceRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("maintenance not found"));
+    public MaintenanceDTO getById(int id) {
+        Maintenance maintenance = iMaintenanceRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("maintenance not found"));
+        return maintenanceMapper.toDto(maintenance);
     }
 
     @Override

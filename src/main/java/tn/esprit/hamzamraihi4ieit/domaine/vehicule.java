@@ -39,7 +39,7 @@ public class vehicule {
     @ToString.Exclude
     private Agence agence;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "vehicule_equipement")
     @ToString.Exclude
     @Builder.Default

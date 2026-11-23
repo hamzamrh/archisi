@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.hamzamraihi4ieit.Service.IMaintenanceServices;
+import tn.esprit.hamzamraihi4ieit.WebController.dto.MaintenanceDTO;
 import tn.esprit.hamzamraihi4ieit.domaine.Maintenance;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class MaintenanceRestController {
 
     @Operation(summary = "Afficher une maintenance par son id")
     @GetMapping("get/{id}")
-    public Maintenance getById(@PathVariable int id) {
+    public MaintenanceDTO getById(@PathVariable int id) {
         return maintenanceServices.getById(id);
     }
 

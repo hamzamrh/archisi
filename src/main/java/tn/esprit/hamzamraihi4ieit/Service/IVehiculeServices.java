@@ -15,4 +15,5 @@ public interface IVehiculeServices {
     vehicule assignToEquipement(long idVehicule, long idEquipement);
     vehicule unassignToAgence(long idVehicule, long idagence);
     vehicule unassignToEquipement(long idVehicule, long idEquipement);
+    vehicule addVehiculeAndAssignToAgence(vehicule vehicule, long idagence);
 }
