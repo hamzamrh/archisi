@@ -5,8 +5,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.hamzamraihi4ieit.Service.IVehiculeServices;
+import tn.esprit.hamzamraihi4ieit.domaine.categorieVehicule;
 import tn.esprit.hamzamraihi4ieit.domaine.vehicule;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Tag(name = "Vehicule", description = "Gestion de la flotte de vehicules")
@@ -70,5 +72,13 @@ public class VehiculeRestController {
     @PostMapping("/addVehiculeAndAssignToAgence/{idAgence}")
     vehicule addVehiculeAndAssignToAgence(@RequestBody vehicule vehicule, @PathVariable long idAgence) {
         return iVehiculeServices.addVehiculeAndAssignToAgence(vehicule, idAgence);
+    }
+    @GetMapping("Listbycateg/{categorie}")
+    List<vehicule> afficherVehicules(@PathVariable categorieVehicule categorie) {
+        return iVehiculeServices.getAllBycategorie(categorie);
+    }
+    @GetMapping("ListbycategAndtarif/{categorie}/{min}/{max}")
+    List<vehicule> afficherVehiculesPartarif(@PathVariable categorieVehicule categorie, BigDecimal min, BigDecimal max) {
+        return iVehiculeServices.getAllBycategorieandTarifJournalierBetween(categorie, min, max);
     }
 }

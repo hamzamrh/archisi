@@ -7,6 +7,7 @@ import tn.esprit.hamzamraihi4ieit.Repository.IReservationRepository;
 import tn.esprit.hamzamraihi4ieit.Service.IReservationServices;
 import tn.esprit.hamzamraihi4ieit.domaine.Reservation;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -38,5 +39,10 @@ public class ReservationServiceImpl implements IReservationServices {
     @Override
     public List<Reservation> findAll() {
         return iReservationRepository.findAll();
+    }
+
+    @Override
+    public List<Reservation> affichereservationpardate(LocalDate date) {
+        return iReservationRepository.affichereservationpardate(date);
     }
 }

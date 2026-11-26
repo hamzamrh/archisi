@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.hamzamraihi4ieit.Service.IReservationServices;
 import tn.esprit.hamzamraihi4ieit.domaine.Reservation;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Tag(name = "Reservation", description = "Gestion des reservations")
@@ -46,4 +47,13 @@ public class ReservationRestController {
     public void delete(@PathVariable Integer id) {
         reservationServices.deleteById(id);
     }
+
+
+
+    @GetMapping("/date/{date}")
+    public List<Reservation> getByDate(@PathVariable LocalDate date) {
+        return reservationServices.affichereservationpardate(date);
+    }
+
+
 }

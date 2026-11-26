@@ -7,10 +7,10 @@ import tn.esprit.hamzamraihi4ieit.Repository.IAgenceRepository;
 import tn.esprit.hamzamraihi4ieit.Repository.IEquipementsRepository;
 import tn.esprit.hamzamraihi4ieit.Repository.IVehiculeRepository;
 import tn.esprit.hamzamraihi4ieit.Service.IVehiculeServices;
-import tn.esprit.hamzamraihi4ieit.domaine.Agence;
-import tn.esprit.hamzamraihi4ieit.domaine.Equipements;
-import tn.esprit.hamzamraihi4ieit.domaine.vehicule;
+import tn.esprit.hamzamraihi4ieit.domaine.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
@@ -93,6 +93,18 @@ public class VehiculeServiceImpl implements IVehiculeServices {
         //save : ajoute le vehicule + ses equipements grace au cascade PERSIST
         return iVehiculeRepository.save(vehicule);
     }
+
+    @Override
+    public List<vehicule> getAllBycategorie(categorieVehicule categorie) {
+        return iVehiculeRepository.findByCategorie(categorie);
+    }
+
+    @Override
+    public List<vehicule> getAllBycategorieandTarifJournalierBetween(categorieVehicule categorie, BigDecimal min, BigDecimal max) {
+        return iVehiculeRepository.findByCategorieAndTarifJournalierBetween(categorie, min, max);
+    }
+
+
 
 
 }

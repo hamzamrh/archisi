@@ -1,7 +1,12 @@
 package tn.esprit.hamzamraihi4ieit.Service;
 
+import org.springframework.data.repository.query.Param;
+import tn.esprit.hamzamraihi4ieit.domaine.Reservation;
+import tn.esprit.hamzamraihi4ieit.domaine.categorieVehicule;
 import tn.esprit.hamzamraihi4ieit.domaine.vehicule;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IVehiculeServices {
@@ -16,4 +21,7 @@ public interface IVehiculeServices {
     vehicule unassignToAgence(long idVehicule, long idagence);
     vehicule unassignToEquipement(long idVehicule, long idEquipement);
     vehicule addVehiculeAndAssignToAgence(vehicule vehicule, long idagence);
+    List<vehicule> getAllBycategorie(categorieVehicule categorie);
+    List<vehicule> getAllBycategorieandTarifJournalierBetween(categorieVehicule categorie,BigDecimal min, BigDecimal max);
+
 }
